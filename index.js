@@ -1,45 +1,70 @@
-const drivers = ['Antonia', 'Nuru', 'Amari', 'Mo'];
-const returnFirstTwoDrivers = function(drivers) {
-    return drivers.slice(0, 2);
+let drivers = ["Antonia", "Nuru", "Amari", "Mo"];
+const returnFirstTwoDrivers = function (drivers) {
+  return drivers.slice(0, 2);
+};
+console.log(returnFirstTwoDrivers(drivers));
+
+const returnLastTwoDrivers = function (drivers) {
+  return drivers.slice(2, 4);
+};
+console.log(returnLastTwoDrivers(drivers));
+
+const selectingDrivers = [returnFirstTwoDrivers,returnLastTwoDrivers];
+console.log(selectingDrivers);
+
+
+function multiplier(num1) {
+  return num1;
+}
+
+function createFareMultiplier(multiplier) {
+  return function (fare) {
+    return multiplier * fare;
   };
-  
-  // anonymous function assigned to variable, then the assigned
-  //function takes one argument (driver), and an array containing
-  //names of the scuber drivers. and returns a new array by splicing the
-  //first two drivers from the original array. 
+}
 
-  const returnLastTwoDrivers = function(drivers) {
-    return drivers.slice(-2);
-  };
+// Testing the createFareMultiplier function
+const fareMultiplierByFour = createFareMultiplier(4);
+console.log(fareMultiplierByFour(9));
 
-  console.log(returnLastTwoDrivers);  
+const fareDoubler = createFareMultiplier(2)
 
-  const selectingDrivers = [returnFirstTwoDrivers, returnLastTwoDrivers]
-  console.log(selectingDrivers);
+console.log(fareDoubler);
 
-  // this is the way to add the two functions as the first and last elements and allows us
-  const createFareMultiplier = function(multiplier) {
-    return function(value) {
-      return value * multiplier;
-    };
-  };
-  
-// this returns a function that multiplies by the multiplier passed in
- 
-const fareDoubler = function(fare) {
-    return fare * 2;
-  };
-// takes in a fare and returns a function that multiplies by 2
-
-const fareTripler = function(fare) {
-    return fare * 3;
-      };
-// same as faredoubler but multiples by 3
+const fareTripler = createFareMultiplier(3);
+console.log(fareTripler);
 
 
+//const lastTwoDrivers = returnLastTwoDrivers(drivers);
 
-const selectDifferentDrivers = function(drivers, selectingDrivers) {
-    return selectingDrivers(drivers);
-  };
+//function selectDifferentDrivers(drivers, lastTwoDrivers){
+ // return ( lastTwoDrivers )
+//}
+//console.log(selectDifferentDrivers(drivers, lastTwoDrivers));
 
-  // i needed help with this last one 
+//const lastTwoDrivers = returnLastTwoDrivers(drivers);
+//const firstTwoDrivers = returnFirstTwoDrivers(drivers);
+
+//function selectDifferentDrivers(arrayOfDrivers, remainingDriversFunction) 
+//{
+  //if (selectDifferentDrivers === lastTwoDrivers) 
+  //  return (drivers + lastTwoDrivers);
+  //else if (selectDifferentDrivers === firstTwoDrivers)
+ //     return (drivers + firstTwoDrivers);
+//}
+//console.log(selectDifferentDrivers(drivers,lastTwoDrivers));
+//console.log(selectDifferentDrivers(drivers,firstTwoDrivers));
+
+const lastTwoDrivers = returnLastTwoDrivers(drivers);
+const firstTwoDrivers = returnFirstTwoDrivers(drivers);
+
+function selectDifferentDrivers(arrayOfDrivers, remainingDriversFunction) {
+  if (remainingDriversFunction === returnLastTwoDrivers) {
+    return lastTwoDrivers;
+  } else if (remainingDriversFunction === returnFirstTwoDrivers) {
+    return firstTwoDrivers;
+  }
+}
+
+console.log(selectDifferentDrivers(drivers, returnLastTwoDrivers));
+console.log(selectDifferentDrivers(drivers, returnFirstTwoDrivers));
